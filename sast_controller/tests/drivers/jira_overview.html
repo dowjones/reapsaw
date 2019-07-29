@@ -1,0 +1,87 @@
+<html>
+<style>
+</style>
+</html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text-html; charset=utf-8">
+</head>
+<style>
+</style>
+<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<link href="main.css" rel="stylesheet" type="text/css">
+<div id="CWEDefinition">
+    <div class="title">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td valign="top" width="20px"></td>
+                <td valign="top">
+                    <div align="center"><span style="font-weight:bold;color:white;">Failure to Preserve Web Page Structure ('Cross-site Scripting')</span>
+                    </div>
+                </td>
+                <td valign="top" width="20px">
+                    <div class="left noprint">
+
+                        <span class="tool"></span>
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="status">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td valign="top" align="left" width="33%" nowrap=""><b>Weakness ID: </b>79<span
+                        style="font-style:italic; font-size:80%"> (Weakness Base)</span></td>
+                <td valign="top" align="center" nowrap=""></td>
+                <td valign="top" align="right" nowrap=""><b>Status: </b><span class="Usable">Usable</span></td>
+            </tr>
+        </table>
+    </div>
+    <div id="Description">
+        <div class="heading"><span id="script"> </span>Description</div>
+        <div name="oc_79_Description" id="oc_79_Description" class="expandblock">
+            <div class="detail">
+                <p class="subheading">Description Summary</p>
+                <div class="detail">The software does not sufficiently validate, filter, escape,
+                    and/or encode user-controllable input before it is placed in output that is used
+                    as a web page that is served to other users.
+                </div>
+                <p class="subheading">Extended Description</p>
+                <div class="indent">
+                    <p>Cross-site scripting (XSS) vulnerabilities occur when:</p>
+                    <div class="indent ">
+                        <p>1. Untrusted data enters a web application, typically from a web
+                            request.</p>
+                        <p>2. The web application dynamically generates a web page that contains
+                            this untrusted data.</p>
+                        <p>3. During page generation, the application does not prevent the data
+                            from containing content that is executable by a web browser, such as
+                            JavaScript, HTML tags, HTML attributes, mouse events, Flash, ActiveX,
+                            etc.</p>
+                        <p>4. A victim visits the generated web page through a web browser, which
+                            contains malicious script that was injected using the untrusted
+                            data.</p>
+                        <p>5. Since the script comes from a web page that was sent by the web
+                            server, the victim's web browser executes the malicious script in the
+                            context of the web server's domain.</p>
+                        <p>6. This effectively violates the intention of the web browser's
+                            same-origin policy, which states that scripts in one domain should not
+                            be able to access resources or run code in a different domain.</p>
+                    </div>
+                    <p>There are three main kinds of XSS:</p>
+                    <p>In many cases, the attack can be launched without the victim even being
+                        aware of it. Even with careful users, attackers frequently use a variety of
+                        methods to encode the malicious portion of the attack, such as URL encoding
+                        or Unicode, so the request looks less suspicious.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
+
+<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></html>
+</html>

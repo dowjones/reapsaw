@@ -1,0 +1,239 @@
+[
+  {
+    "ok": false,
+    "vulnerabilities": [
+      {
+        "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "alternativeIds": [],
+        "creationTime": "2017-07-19T00:00:00Z",
+        "credit": [
+          "David Fernandez"
+        ],
+        "cvssScore": 7.5,
+        "description": "## Overview\n[`System.Net.Security`](https://www.nuget.org/packages/System.Net.Security) provides types, such as System.Net.Security.SslStream, that uses SSL/TLS protocols to provide secure network communication between client and server endpoints.\n\nAffected versions of this package are vulnerable to Denial of Service (DoS) attacks.\n\nA denial of service vulnerability exists when the `ASP.NET Core` fails to properly validate web requests.\n\n**NOTE:** Microsoft has not commented on third-party claims that the issue is that the `TextEncoder.EncodeCore` function in the `System.Text.Encodings.Web` package in ASP.NET Core Mvc before 1.0.4 and 1.1.x before 1.1.3 allows remote attackers to cause a denial of service by leveraging failure to properly calculate the length of 4-byte characters in the Unicode Non-Character range.\n\n## Details\nDenial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its intended and legitimate users.\r\n\r\nUnlike other vulnerabilities, DoS attacks usually do not aim at breaching security. Rather, they are focused on making websites and services unavailable to genuine users resulting in downtime.\r\n\r\nOne popular Denial of Service vulnerability is DDoS (a Distributed Denial of Service), an attack that attempts to clog network pipes to the system by generating a large volume of traffic from many machines.\r\n\r\nWhen it comes to open source libraries, DoS vulnerabilities allow attackers to trigger such a crash or crippling of the service by using a flaw either in the application code or from the use of open source libraries.\r\n\r\nTwo common types of DoS vulnerabilities:\r\n\r\n* High CPU/Memory Consumption- An attacker sending crafted requests that could cause the system to take a disproportionate amount of time to process. For example, [commons-fileupload:commons-fileupload](SNYK-JAVA-COMMONSFILEUPLOAD-30082).\r\n\r\n* Crash - An attacker sending crafted requests that could cause the system to crash. For Example,  [npm `ws` package](npm:ws:20171108)\n\n## Remediation\nUpgrade `System.Net.Security` to version 4.0.1, 4.3.1 or higher.\n\n## References\n- [NVD](https://nvd.nist.gov/vuln/detail/2017-0247)\n- [David Fernandez Blog](https://www.sidertia.com/Home/Community/Blog/2017/05/18/ASPNET-Core-Unicode-Non-Char-Encoding-DoS)\n- [Microsoft Security Advisory](https://technet.microsoft.com/en-us/library/security/4021279.aspx)\n- [GitHub Security Advisory](https://github.com/aspnet/Announcements/issues/239)\n",
+        "disclosureTime": "2017-05-09T00:00:00Z",
+        "functions": [],
+        "id": "SNYK-DOTNET-SYSTEMNETSECURITY-60069",
+        "identifiers": {
+          "CVE": [
+            "CVE-2017-0247"
+          ],
+          "CWE": [
+            "CWE-254"
+          ]
+        },
+        "language": "dotnet",
+        "methods": [],
+        "modificationTime": "2018-11-18T11:50:50.092784Z",
+        "moduleName": "system.net.security",
+        "packageManager": "nuget",
+        "packageName": "System.Net.Security",
+        "patches": [],
+        "publicationTime": "2017-05-09T00:00:00Z",
+        "references": [
+          {
+            "title": "NVD",
+            "url": "https://nvd.nist.gov/vuln/detail/2017-0247"
+          },
+          {
+            "title": "David Fernandez Blog",
+            "url": "https://www.sidertia.com/Home/Community/Blog/2017/05/18/ASPNET-Core-Unicode-Non-Char-Encoding-DoS"
+          },
+          {
+            "title": "Microsoft Security Advisory",
+            "url": "https://technet.microsoft.com/en-us/library/security/4021279.aspx"
+          },
+          {
+            "title": "GitHub Security Advisory",
+            "url": "https://github.com/aspnet/Announcements/issues/239"
+          }
+        ],
+        "semver": {
+          "vulnerable": [
+            "[,4.0.1), [4.3,4.3.1)"
+          ]
+        },
+        "severity": "medium",
+        "title": "Denial of Service (DoS)",
+        "from": [
+          "test_proj_nameWeb@1.0.0",
+          "CacheManager.StackExchange.Redis@1.1.2",
+          "StackExchange.Redis.StrongName@1.2.6",
+          "System.Net.Security@4.3.0"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "name": "System.Net.Security",
+        "version": "4.3.0"
+      },
+      {
+        "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "alternativeIds": [],
+        "creationTime": "2017-07-19T00:00:00Z",
+        "credit": [
+          "David Fernandez"
+        ],
+        "cvssScore": 7.5,
+        "description": "## Overview\n[`System.Net.Security`](https://www.nuget.org/packages/System.Net.Security) provides types, such as System.Net.Security.SslStream, that uses SSL/TLS protocols to provide secure network communication between client and server endpoints.\n\nAffected versions of this package are vulnerable to Denial of Service (DoS) attacks.\n\nA denial of service vulnerability exists when the `ASP.NET Core` fails to properly validate web requests.\n\n**NOTE:** Microsoft has not commented on third-party claims that the issue is that the `TextEncoder.EncodeCore` function in the `System.Text.Encodings.Web` package in ASP.NET Core Mvc before 1.0.4 and 1.1.x before 1.1.3 allows remote attackers to cause a denial of service by leveraging failure to properly calculate the length of 4-byte characters in the Unicode Non-Character range.\n\n## Details\nDenial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its intended and legitimate users.\r\n\r\nUnlike other vulnerabilities, DoS attacks usually do not aim at breaching security. Rather, they are focused on making websites and services unavailable to genuine users resulting in downtime.\r\n\r\nOne popular Denial of Service vulnerability is DDoS (a Distributed Denial of Service), an attack that attempts to clog network pipes to the system by generating a large volume of traffic from many machines.\r\n\r\nWhen it comes to open source libraries, DoS vulnerabilities allow attackers to trigger such a crash or crippling of the service by using a flaw either in the application code or from the use of open source libraries.\r\n\r\nTwo common types of DoS vulnerabilities:\r\n\r\n* High CPU/Memory Consumption- An attacker sending crafted requests that could cause the system to take a disproportionate amount of time to process. For example, [commons-fileupload:commons-fileupload](SNYK-JAVA-COMMONSFILEUPLOAD-30082).\r\n\r\n* Crash - An attacker sending crafted requests that could cause the system to crash. For Example,  [npm `ws` package](npm:ws:20171108)\n\n## Remediation\nUpgrade `System.Net.Security` to version 4.0.1, 4.3.1 or higher.\n\n## References\n- [NVD](https://nvd.nist.gov/vuln/detail/2017-0247)\n- [David Fernandez Blog](https://www.sidertia.com/Home/Community/Blog/2017/05/18/ASPNET-Core-Unicode-Non-Char-Encoding-DoS)\n- [Microsoft Security Advisory](https://technet.microsoft.com/en-us/library/security/4021279.aspx)\n- [GitHub Security Advisory](https://github.com/aspnet/Announcements/issues/239)\n",
+        "disclosureTime": "2017-05-09T00:00:00Z",
+        "functions": [],
+        "id": "SNYK-DOTNET-SYSTEMNETSECURITY-60069",
+        "identifiers": {
+          "CVE": [
+            "CVE-2017-0247"
+          ],
+          "CWE": [
+            "CWE-254"
+          ]
+        },
+        "language": "dotnet",
+        "methods": [],
+        "modificationTime": "2018-11-18T11:50:50.092784Z",
+        "moduleName": "system.net.security",
+        "packageManager": "nuget",
+        "packageName": "System.Net.Security",
+        "patches": [],
+        "publicationTime": "2017-05-09T00:00:00Z",
+        "references": [
+          {
+            "title": "NVD",
+            "url": "https://nvd.nist.gov/vuln/detail/2017-0247"
+          },
+          {
+            "title": "David Fernandez Blog",
+            "url": "https://www.sidertia.com/Home/Community/Blog/2017/05/18/ASPNET-Core-Unicode-Non-Char-Encoding-DoS"
+          },
+          {
+            "title": "Microsoft Security Advisory",
+            "url": "https://technet.microsoft.com/en-us/library/security/4021279.aspx"
+          },
+          {
+            "title": "GitHub Security Advisory",
+            "url": "https://github.com/aspnet/Announcements/issues/239"
+          }
+        ],
+        "semver": {
+          "vulnerable": [
+            "[,4.0.1), [4.3,4.3.1)"
+          ]
+        },
+        "severity": "high",
+        "title": "Denial of Service (DoS)",
+        "from": [
+          "test_proj_nameWeb@1.0.0",
+          "CacheManager.StackExchange.Redis@1.1.2",
+          "StackExchange.Redis.StrongName@1.2.6",
+          "System.Net.Security5@4.3.0"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "name": "System.Net.Security",
+        "version": "4.3.0"
+      }
+    ],
+    "dependencyCount": 330,
+    "org": "testesorg",
+    "licensesPolicy": {
+    },
+    "isPrivate": true,
+    "packageManager": "nuget",
+    "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\nversion: v1.13.3\nignore: {}\npatch: {}\n",
+    "ignoreSettings": null,
+    "summary": "132 vulnerable dependency paths",
+    "filesystemPolicy": false,
+    "filtered": {
+      "ignore": [],
+      "patch": []
+    },
+    "uniqueCount": 23,
+    "path": "/code/src/test_proj_nameWeb"
+  },
+  {
+    "ok": false,
+    "vulnerabilities": [
+      {
+        "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "alternativeIds": [],
+        "creationTime": "2017-07-19T00:00:00Z",
+        "credit": [
+          "David Fernandez"
+        ],
+        "cvssScore": 7.5,
+        "description": "## Overview\n[`System.Net.Security`](https://www.nuget.org/packages/System.Net.Security) provides types, such as System.Net.Security.SslStream, that uses SSL/TLS protocols to provide secure network communication between client and server endpoints.\n\nAffected versions of this package are vulnerable to Denial of Service (DoS) attacks.\n\nA denial of service vulnerability exists when the `ASP.NET Core` fails to properly validate web requests.\n\n**NOTE:** Microsoft has not commented on third-party claims that the issue is that the `TextEncoder.EncodeCore` function in the `System.Text.Encodings.Web` package in ASP.NET Core Mvc before 1.0.4 and 1.1.x before 1.1.3 allows remote attackers to cause a denial of service by leveraging failure to properly calculate the length of 4-byte characters in the Unicode Non-Character range.\n\n## Details\nDenial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its intended and legitimate users.\r\n\r\nUnlike other vulnerabilities, DoS attacks usually do not aim at breaching security. Rather, they are focused on making websites and services unavailable to genuine users resulting in downtime.\r\n\r\nOne popular Denial of Service vulnerability is DDoS (a Distributed Denial of Service), an attack that attempts to clog network pipes to the system by generating a large volume of traffic from many machines.\r\n\r\nWhen it comes to open source libraries, DoS vulnerabilities allow attackers to trigger such a crash or crippling of the service by using a flaw either in the application code or from the use of open source libraries.\r\n\r\nTwo common types of DoS vulnerabilities:\r\n\r\n* High CPU/Memory Consumption- An attacker sending crafted requests that could cause the system to take a disproportionate amount of time to process. For example, [commons-fileupload:commons-fileupload](SNYK-JAVA-COMMONSFILEUPLOAD-30082).\r\n\r\n* Crash - An attacker sending crafted requests that could cause the system to crash. For Example,  [npm `ws` package](npm:ws:20171108)\n\n## Remediation\nUpgrade `System.Net.Security` to version 4.0.1, 4.3.1 or higher.\n\n## References\n- [NVD](https://nvd.nist.gov/vuln/detail/2017-0247)\n- [David Fernandez Blog](https://www.sidertia.com/Home/Community/Blog/2017/05/18/ASPNET-Core-Unicode-Non-Char-Encoding-DoS)\n- [Microsoft Security Advisory](https://technet.microsoft.com/en-us/library/security/4021279.aspx)\n- [GitHub Security Advisory](https://github.com/aspnet/Announcements/issues/239)\n",
+        "disclosureTime": "2017-05-09T00:00:00Z",
+        "functions": [],
+        "id": "SNYK-DOTNET-SYSTEMNETSECURITY-60069",
+        "identifiers": {
+          "CVE": [
+            "CVE-2017-0247"
+          ],
+          "CWE": [
+            "CWE-254"
+          ]
+        },
+        "language": "dotnet",
+        "methods": [],
+        "modificationTime": "2018-11-18T11:50:50.092784Z",
+        "moduleName": "system.net.security1",
+        "packageManager": "nuget",
+        "packageName": "System.Net.Security1",
+        "patches": [],
+        "publicationTime": "2017-05-09T00:00:00Z",
+        "references": [
+          {
+            "title": "NVD",
+            "url": "https://nvd.nist.gov/vuln/detail/2017-0247"
+          },
+          {
+            "title": "David Fernandez Blog",
+            "url": "https://www.sidertia.com/Home/Community/Blog/2017/05/18/ASPNET-Core-Unicode-Non-Char-Encoding-DoS"
+          },
+          {
+            "title": "Microsoft Security Advisory",
+            "url": "https://technet.microsoft.com/en-us/library/security/4021279.aspx"
+          },
+          {
+            "title": "GitHub Security Advisory",
+            "url": "https://github.com/aspnet/Announcements/issues/239"
+          }
+        ],
+        "semver": {
+          "vulnerable": [
+            "[,4.0.1), [4.3,4.3.1)"
+          ]
+        },
+        "severity": "medium",
+        "title": "Denial of Service (DoS)",
+        "from": [
+          "test_proj_nameWeb@1.0.0",
+          "CacheManager.StackExchange.Redis@1.1.2",
+          "StackExchange.Redis.StrongName@1.2.6",
+          "System.Net.Security1@4.3.0"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "name": "System.Net.Security1",
+        "version": "4.3.0"
+      }
+    ],
+    "dependencyCount": 330,
+    "org": "testesorg",
+    "licensesPolicy": {
+    },
+    "isPrivate": true,
+    "packageManager": "nuget",
+    "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\nversion: v1.13.3\nignore: {}\npatch: {}\n",
+    "ignoreSettings": null,
+    "summary": "132 vulnerable dependency paths",
+    "filesystemPolicy": false,
+    "filtered": {
+      "ignore": [],
+      "patch": []
+    },
+    "uniqueCount": 23,
+    "path": "/code/src/test_proj_nameWeb"
+  }
+]

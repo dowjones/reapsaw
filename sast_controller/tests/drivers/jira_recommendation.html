@@ -1,0 +1,56 @@
+<html>
+<meta charset="UTF-8">
+<body>
+<p class="doctitle">
+    Client_DOM_Stored_XSS</p>
+<p class="doctitle sectiontitle">
+    Risk</p>
+<p class="doctitle sectiontitle subtitle">
+    What might happen</p>
+<pre class="content section">
+<div>An attacker could use legitimate access to the application to submit engineered data to the application&#8217;s database. When another user subsequently accesses this data, web pages may be rewritten and malicious scripts may be activated.</div>
+</pre>
+<hr></hr>
+<p class="doctitle sectiontitle">
+    Cause</p>
+<p class="doctitle sectiontitle subtitle">
+    How does it happen</p>
+<pre class="content section">
+<div>The application creates web pages that include data from the application&#8217;s database. The data is embedded directly in the page's HTML, causing the browser to display it as part of the web page. This data may have originated in input from another user. If the data includes HTML fragments or Javascript, these are displayed too, and the user cannot tell that this is not the intended page. The vulnerability is the result of embedding arbitrary database data without first encoding it in a format that would prevent the browser from treating it like HTML instead of plain text.</div>
+</pre>
+<hr></hr>
+<p class="doctitle sectiontitle">
+    General Recommendations</p>
+<p class="doctitle sectiontitle subtitle">
+    How to avoid it</p>
+<pre class="content section">
+<ol>
+<li>Validate all dynamic data, regardless of source. Validation should be based on a whitelist: accept only data fitting a specified structure, rather than reject bad patterns. Check for:</li>
+<ul>
+<li>Data type</li>
+<li>Size</li>
+<li>Range</li>
+<li>Format</li>
+<li>Expected values</li>
+</ul>
+<li>Validation is not a replacement for encoding. Fully encode all dynamic data, regardless of source, before embedding it in output. Encoding should be context-sensitive. For example:</li>
+<ul>
+<li>HTML encoding for HTML content</li>
+<li>HTML attribute encoding for data output to attribute values</li>
+<li>Javascript encoding for server-generated Javascript.</li>
+</ul>
+<li>Consider using either the ESAPI encoding library, or its built-in functions. For earlier versions of ASP.NET, consider using the AntiXSS library.</li>
+<li>In the Content-Type HTTP response header, explicitly define character encoding (charset) for the entire page.</li>
+<li>Set the httpOnly flag on the session cookie, to prevent XSS exploits from stealing the cookie.</li>
+</ol>
+</pre>
+<hr></hr>
+<p class="doctitle sectiontitle">
+    Source Code Examples</p>
+<p class="doctitle sectiontitle subtitle">
+    CSharp</p>
+<p class="doctitle sectiontitle subtitle">
+    Data obtained from the execution of an SQL command is output to a label</p><br/>
+<span class="content section">for more information :</span><a href="http://cwe.mitre.org/data/definitions/79.html"
+                                                              target="_blank">http://cwe.mitre.org/data/definitions/79.html</a>
+</body>

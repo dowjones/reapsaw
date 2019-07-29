@@ -1,0 +1,15 @@
+appName: barrage_slaves
+authorizedUsers: rozumenkoa
+
+version: 1.0.0
+
+scm: git
+build:
+  type: tox
+
+staticAnalysis:
+  type: nope
+
+publish:
+  type: docker
+  version: 1.0.0
