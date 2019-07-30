@@ -16,7 +16,6 @@ Static application security testing (SAST) is a set of technologies designed to 
 
 ### Documentation
 - [Wiki](https://github.com/dowjones/reapsaw/wiki)
-- [Github Docs](https://github.com/dowjones/reapsaw/tree/develop/docs)
 
 ### Tests
 
