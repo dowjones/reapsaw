@@ -20,7 +20,7 @@ Static application security testing (SAST) is a set of technologies designed to 
 
 ### Tests
 
-- see also [CONTRIBUTING](https://github.com/dowjones/reapsaw/blob/develop/CONTRIBUTING.md)
+- see also [CONTRIBUTING](https://github.com/dowjones/reapsaw/blob/master/CONTRIBUTING.md)
 
 ```
 tox -e install

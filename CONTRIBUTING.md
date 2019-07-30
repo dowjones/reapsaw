@@ -3,7 +3,7 @@
 
 Fork, then clone the repo:
 ```shell
-    git clone https://github.com/dowjones/sast.git
+    git clone https://github.com/dowjones/reapsaw.git
 ```
 The easiest way to run test, lint, etc is via docker:
 
