@@ -48,7 +48,6 @@ class BaseReport(object):
         "Recommendations": "",
         "References": "",  # where you can read more about issue(s)
         "Paths": "",  # paths in code affected by issue
-        "URLs": "",  # URLs for issue description or affected by issue (in case of DAST)
         "error_string": "",
         "Description": "",
         "Instances": "",

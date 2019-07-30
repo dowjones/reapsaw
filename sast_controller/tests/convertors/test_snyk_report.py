@@ -68,7 +68,6 @@ EXPECTED_REPORT = [{
     'Repo': '',
     'Steps To Reproduce': '',
     'Tags': [{'TestType': 'sast'}, {'Provider': 'Reapsaw'}, {'Tool': 'Snyk'}],
-    'URLs': '',
     'error_string': '@nyc.dotted',
     'language': 'js',
     'top_level_module': '@nyc.dotted',

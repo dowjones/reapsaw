@@ -1,13 +1,10 @@
 FROM python:3.6-slim
 
-LABEL maintainer="karen.florykian@dowjones.com,igor.bakalo@dowjones.com"
-
 ENV appDir /code
 ENV GIT_SSL_NO_VERIFY 1
 ENV OPEN_SOURCE_CONFIGURATION_ORIGIN LocalPath
 ENV CX_WSDL_VERSION v7
 ENV DEPENDENCY_CHECK_VERSION 3.3.0
-ENV NPM_REGISTRY https://registry.npmjs.org
 ENV MASK_PERCENT 0.7
 ENV MAX_TOKEN_LEN 5
 ENV SBT_VERSION 0.13.15

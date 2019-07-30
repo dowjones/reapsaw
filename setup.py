@@ -15,11 +15,11 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='DowJones SAST Container Core',
+    name='DowJones Reapsaw',
     version='1.0.0',
     description='Core component',
     long_description='',
-    url='https://www.dowjons.com',
+    url='https://www.dowjones.com',
     license='Apache License 2.0',
     author='DowJones',
     author_email='artem.rozumenko@dowjones.com',

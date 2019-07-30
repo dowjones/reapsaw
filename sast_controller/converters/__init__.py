@@ -49,9 +49,6 @@ STATUS_MAPPING = {
     'Info': 'Information',
 }
 
-SONAR_RULES_LINK = 'https://rules.sonarsource.com/javascript/type/Vulnerability/RSPEC-{}'
-SONAR_PROJECT_LINK = '{}:{}/project/issues?id={}&types=VULNERABILITY'
-
 RP_DEFECT_TYPE_PRIORITY = {
     'Product Bug': 0,
     'System Issue': 1,

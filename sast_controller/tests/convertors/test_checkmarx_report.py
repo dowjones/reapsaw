@@ -64,7 +64,6 @@ EXPECTED_REPORT = [{
         {'TestType': 'sast'},
         {'Provider': 'Reapsaw'},
         {'Tool': 'Checkmarx'}],
-    'URLs': '',
     'error_string': 'Cross-site Scripting (XSS) 79\n'
                     'code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}, {
     'Attachments': [],
@@ -104,7 +103,6 @@ EXPECTED_REPORT = [{
         {'TestType': 'sast'},
         {'Provider': 'Reapsaw'},
         {'Tool': 'Checkmarx'}],
-    'URLs': '',
     'error_string': 'Cross-site Scripting (XSS) 79\n'
                     'code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}
 ]
