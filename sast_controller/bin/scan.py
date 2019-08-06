@@ -130,6 +130,10 @@ def snyk_scan():
         return
     if lang_ == 'dotnet':
         output = snyk_scan_dotnet()
+    elif lang_ == 'python':
+        subprocess.Popen(['/tmp/snyk_py_scan.sh', Config.SNYK_OUTPUT_PATH], encoding="utf-8",
+                         stdout=subprocess.PIPE).communicate()
+        return
     else:
         cmd = 'snyk test --json'.split(" ")
         test = subprocess.Popen(cmd, encoding="utf-8", stdout=subprocess.PIPE)
