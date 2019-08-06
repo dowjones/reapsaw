@@ -15,7 +15,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='DowJones SAST Container Core',
+    name='DowJones Reapsaw',
     version='1.0.0',
     description='Core component',
     long_description='',
