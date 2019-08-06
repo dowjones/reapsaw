@@ -61,7 +61,7 @@ RUN echo "addSbtPlugin(\"net.virtual-void\" % \"sbt-dependency-graph\" % \"0.9.2
 RUN pip3 install --upgrade pip && \
     pip3 install bandit==1.5.1 junit-xml==1.8 requests==2.21.0 zeep==2.5.0 PyYAML==3.12 bs4==0.0.1 \
     slackclient==1.2.1 jira==1.0.15 configparser==3.5.0 PyJWT==1.6.4 cryptography==2.2.2 \
-    xmltodict==0.11.0 junit2html==21 && \
+    xmltodict==0.11.0 junit2html==21 virtualenv==16.7.2 && \
     pip3 install https://github.com/reportportal/client-Python/archive/3.2.2.zip
 
 # Creating code directory
@@ -75,6 +75,8 @@ RUN cd /tmp && python3 setup.py install
 
 WORKDIR ${appDir}
 ADD ./entrypoint.sh /tmp/entrypoint.sh
+ADD ./snyk_py_scan.sh /tmp/snyk_py_scan.sh
 RUN chmod +x /tmp/entrypoint.sh
+RUN chmod +x /tmp/snyk_py_scan.sh
 
 ENTRYPOINT ["/tmp/entrypoint.sh"]

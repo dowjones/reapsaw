@@ -7,13 +7,11 @@ PyYAML, MIT
 bs4, MIT
 slackclient, MIT
 jira, BSD
-sonarqube-api, MIT
 configparser, MIT
 PyJWT, MIT
 cryptography, BSD or Apache License Version 2.0
 xmltodict, MIT
 junit2html, MIT
-markdownify, BSD
 snyk, Apache 2.0
 GitPython, BSD
 reportportal-client, Apache 2.0

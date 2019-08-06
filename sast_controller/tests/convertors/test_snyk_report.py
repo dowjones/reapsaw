@@ -220,6 +220,7 @@ class TestSnykReport(unittest.TestCase):
 
         def get_item(item):
             return item
+
         get_item_mock.side_effect = get_item
         vulnerabilities = [
             {
@@ -297,8 +298,6 @@ class TestSnykReport(unittest.TestCase):
                 'top_level_module': 'B',
                 'upgrades': [False, 'B@1.0.0', 'B_B@1.0.0', 'C_C_C@1.0.0']
             }
-
-
         ]
         self.assertEqual(3, len(grouped_vulns))
         self.assertEqual(expected_groped_vulns, grouped_vulns)

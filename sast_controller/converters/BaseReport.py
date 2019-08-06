@@ -62,13 +62,12 @@ class BaseReport(object):
         :param report:
             raw report from SAST tool
         """
-        if report != 'sonar':
-            if 'xml' not in report:
-                with open(report) as f:
-                    self.report = loads(f.read())
-            else:
-                tree = ET.parse(report)
-                self.report = tree.getroot()
+        if 'xml' not in report:
+            with open(report) as f:
+                self.report = loads(f.read())
+        else:
+            tree = ET.parse(report)
+            self.report = tree.getroot()
         self.new_items = dict()
         self.report = self._canonify()
 
