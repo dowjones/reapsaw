@@ -39,9 +39,9 @@ EXPECTED_REPORT = [{
                    '    *Code*:\n'
                    '    ``` public IActionResult PostTranslateDjml([FromBody] '
                    'JsonApiResponse<ArticleData, MetaArticle> article, ```',
-    'Instances': 'File code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
+    'Instances': 'File /code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
     'Issue Confidence': 'Certain',
-    'Issue Name': 'Cross-site Scripting (XSS).code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
+    'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
     'Issue Priority': 'Major',
     'Issue Severity': 'High',
     'Issue Tool': 'Checkmarx',
@@ -53,7 +53,7 @@ EXPECTED_REPORT = [{
     'RP Defect Type': 'To Investigate',
     'Recommendations': 'Please review and modify vulnerable code in line 553 of ArticlesController.cs',
     'References': 'Line 553 in file '
-                  '[code/src/MyApp.Api.Web/Controllers/ArticlesController.cs|https://sast.mysite.com/CxWebClient/'
+                  '[/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs|https://sast.mysite.com/CxWebClient/'
                   'ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=11]',
     'Repo': 'https://github.com/myrepo',
     'Snippet': 'public IActionResult PostTranslateDjml([FromBody] '
@@ -65,7 +65,7 @@ EXPECTED_REPORT = [{
         {'Provider': 'Reapsaw'},
         {'Tool': 'Checkmarx'}],
     'error_string': 'Cross-site Scripting (XSS) 79\n'
-                    'code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}, {
+                    '/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}, {
     'Attachments': [],
     'CVE': '',
     'CWE': '[CWE-79|https://cwe.mitre.org/data/definitions/79]',
@@ -76,9 +76,9 @@ EXPECTED_REPORT = [{
                    '    ``` public async Task<IActionResult> '
                    'GetDjmlByOriginId(string id, [FromHeader(Name= '
                    '"x-api-key")] string ```',
-    'Instances': 'File code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
+    'Instances': 'File /code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
     'Issue Confidence': 'Certain',
-    'Issue Name': 'Cross-site Scripting (XSS).code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
+    'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
     'Issue Priority': 'Major',
     'Issue Severity': 'High',
     'Issue Tool': 'Checkmarx',
@@ -93,7 +93,7 @@ EXPECTED_REPORT = [{
     'RP Defect Type': 'Product Bug',
     'Recommendations': 'Please review and modify vulnerable code in line 553 of ArticlesController.cs',
     'References': 'Line 467 in file '
-                  '[code/src/MyApp.Api.Web/Controllers/ArticlesController.cs|https://sast.mysite.com/CxWebClient/'
+                  '[/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs|https://sast.mysite.com/CxWebClient/'
                   'ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=12]',
     'Repo': 'https://github.com/myrepo',
     'Snippet': 'public async Task<IActionResult> GetDjmlByOriginId(string '
@@ -104,7 +104,7 @@ EXPECTED_REPORT = [{
         {'Provider': 'Reapsaw'},
         {'Tool': 'Checkmarx'}],
     'error_string': 'Cross-site Scripting (XSS) 79\n'
-                    'code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}
+                    '/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}
 ]
 
 
