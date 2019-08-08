@@ -98,7 +98,7 @@ class CheckmarxReport(BaseReport):
             existing_results = set()
             for result in query:
                 for path_ in result:
-                    result_file = result.attrib["FileName"]
+                    result_file = os.path.join('/', result.attrib["FileName"])
                     name = query.attrib.get("name")
                     language = query.attrib.get("Language")
                     line = result.attrib.get("Line")
