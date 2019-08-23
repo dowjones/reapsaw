@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CxXMLResults InitiatorName="test scanner" Owner="SAML\\User.B@email.com" ScanId="1027717" ProjectId="3076" ProjectName="my_project" TeamFullPathOnReportDate="CxServer\\SP\\My Company\\test" DeepLink="https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&amp;projectid=3076" ScanStart="Friday, February 15, 2019 5:36:17 PM" Preset="Checkmarx Default" ScanTime="00h:03m:17s" LinesOfCodeScanned="130631" FilesScanned="148" ReportCreationTime="Tuesday, February 19, 2019 11:40:47 AM" Team="test" CheckmarxVersion="8.8.0.72 HF8" ScanComments="Running from code" ScanType="Incremental" SourceOrigin="LocalPath" Visibility="Public">
   <Query id="427" categories="PCI DSS v3.2;PCI DSS (3.2) - 6.5.7 - Cross-site scripting (XSS),OWASP Top 10 2013;A3-Cross-Site Scripting (XSS),FISMA 2014;System And Information Integrity,NIST SP 800-53;SI-15 Information Output Filtering (P0),OWASP Top 10 2017;A7-Cross-Site Scripting (XSS)" cweId="79" name="Reflected_XSS_All_Clients" group="CSharp_High_Risk" Severity="High" Language="CSharp" LanguageHash="0978409962023014" LanguageChangeDate="2018-08-30T00:00:00.0000000" SeverityIndex="3" QueryPath="CSharp\\Cx\\CSharp High Risk\\Reflected XSS All Clients Version:1" QueryVersionCode="54386807">
-    <Result NodeId="10277170011" FileName="code/src/MyApp.Api.Web/Controllers/ArticlesController.cs" Status="Recurrent" Line="553" Column="101" FalsePositive="False" Severity="High" AssignToUser="" state="0" Remark="" DeepLink="https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&amp;projectid=3076&amp;pathid=11" SeverityIndex="3">
+    <Result NodeId="10277170011" FileName="code/src/MyApp.Api.Web/Controllers/Controller.cs" Status="Recurrent" Line="553" Column="101" FalsePositive="False" Severity="High" AssignToUser="" state="0" Remark="" DeepLink="https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&amp;projectid=3076&amp;pathid=11" SeverityIndex="3">
       <Path ResultId="1027717" PathId="11" SimilarityId="646560328">
         <PathNode>
-          <FileName>code/src/MyApp.Api.Web/Controllers/ArticlesController.cs</FileName>
+          <FileName>code/src/MyApp.Api.Web/Controllers/Controller.cs</FileName>
           <Line>553</Line>
           <Column>101</Column>
           <NodeId>1</NodeId>
@@ -14,12 +14,12 @@
           <Snippet>
             <Line>
               <Number>553</Number>
-              <Code>        public IActionResult PostTranslateDjml([FromBody] JsonApiResponse&lt;ArticleData, MetaArticle&gt; article, [FromServices] IContentTranslation contentTranslation)</Code>
+              <Code>        public IActionResult PostTranslate(JsonApiResponse article, IContentTranslation contentTranslation)</Code>
             </Line>
           </Snippet>
         </PathNode>
         <PathNode>
-          <FileName>code/src/MyApp.Api.Web/Controllers/ArticlesController.cs</FileName>
+          <FileName>code/src/MyApp.Api.Web/Controllers/Controller.cs</FileName>
           <Line>555</Line>
           <Column>56</Column>
           <NodeId>2</NodeId>
@@ -29,16 +29,16 @@
           <Snippet>
             <Line>
               <Number>555</Number>
-              <Code>            var xml = contentTranslation.ArticleToDjml(article);</Code>
+              <Code>            var xml = contentTranslation.Convert(article);</Code>
             </Line>
           </Snippet>
         </PathNode>
       </Path>
     </Result>
-    <Result NodeId="10277170012" FileName="code/src/MyApp.Api.Web/Controllers/ArticlesController.cs" Status="Recurrent" Line="467" Column="67" FalsePositive="False" Severity="High" AssignToUser="" state="2" Remark="Oleksii C my_project, [Monday, July 29, 2019 10:36:13 AM]: Changed status to Confirmed&#xD;&#xA;Oleksii C my_project, [Monday, July 29, 2019 10:35:47 AM]: Changed status to Not Exploitable" DeepLink="https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&amp;projectid=3076&amp;pathid=12" SeverityIndex="3">
+    <Result NodeId="10277170012" FileName="code/src/MyApp.Api.Web/Controllers/Controller.cs" Status="Recurrent" Line="467" Column="67" FalsePositive="False" Severity="High" AssignToUser="" state="2" Remark="Oleksii C my_project, [Monday, July 29, 2019 10:36:13 AM]: Changed status to Confirmed&#xD;&#xA;Oleksii C my_project, [Monday, July 29, 2019 10:35:47 AM]: Changed status to Not Exploitable" DeepLink="https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&amp;projectid=3076&amp;pathid=12" SeverityIndex="3">
       <Path ResultId="1027717" PathId="12" SimilarityId="1722761064">
         <PathNode>
-          <FileName>code/src/MyApp.Api.Web/Controllers/ArticlesController.cs</FileName>
+          <FileName>code/src/MyApp.Api.Web/Controllers/Controller.cs</FileName>
           <Line>467</Line>
           <Column>67</Column>
           <NodeId>1</NodeId>
@@ -48,12 +48,12 @@
           <Snippet>
             <Line>
               <Number>467</Number>
-              <Code>        public async Task&lt;IActionResult&gt; GetDjmlByOriginId(string id, [FromHeader(Name= "x-api-key")] string apiKey)</Code>
+              <Code>        public async Task&lt;IActionResult&gt; GetById(string id, string apiKey)</Code>
             </Line>
           </Snippet>
         </PathNode>
         <PathNode>
-          <FileName>code/src/MyApp.Api.Web/Controllers/ArticlesController.cs</FileName>
+          <FileName>code/src/MyApp.Api.Web/Controllers/Controller.cs</FileName>
           <Line>474</Line>
           <Column>82</Column>
           <NodeId>2</NodeId>
@@ -63,7 +63,43 @@
           <Snippet>
             <Line>
               <Number>474</Number>
-              <Code>                    var article = await _articleGateway.GetDjmlByExternalIdAsync(id);</Code>
+              <Code>                    var article = await repository.Get(id);</Code>
+            </Line>
+          </Snippet>
+        </PathNode>
+      </Path>
+    </Result>
+  </Query>
+  <Query id="427" categories="PCI DSS v3.2;PCI DSS (3.2) - 6.5.7 - Cross-site scripting (XSS),OWASP Top 10 2013;A3-Cross-Site Scripting (XSS),FISMA 2014;System And Information Integrity,NIST SP 800-53;SI-15 Information Output Filtering (P0),OWASP Top 10 2017;A7-Cross-Site Scripting (XSS)" cweId="79" name="Reflected_XSS_All_Clients" group="CSharp_High_Risk" Severity="High" Language="CSharp" LanguageHash="0978409962023014" LanguageChangeDate="2018-08-30T00:00:00.0000000" SeverityIndex="3" QueryPath="CSharp\\Cx\\CSharp High Risk\\Reflected XSS All Clients Version:1" QueryVersionCode="54386807">
+    <Result NodeId="10277170012" FileName="code/src/MyApp.Api.Web/Controllers/Controller.cs" Status="Recurrent" Line="467" Column="67" FalsePositive="False" Severity="High" AssignToUser="" state="2" Remark="Oleksii C my_project, [Monday, July 29, 2019 10:36:13 AM]: Changed status to Confirmed&#xD;&#xA;Oleksii C my_project, [Monday, July 29, 2019 10:35:47 AM]: Changed status to Not Exploitable" DeepLink="https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&amp;projectid=3076&amp;pathid=12" SeverityIndex="3">
+      <Path ResultId="1027717" PathId="12" SimilarityId="1722761064">
+        <PathNode>
+          <FileName>code/src/MyApp.Api.Web/Controllers/Controller.cs</FileName>
+          <Line>467</Line>
+          <Column>67</Column>
+          <NodeId>1</NodeId>
+          <Name>id</Name>
+          <Type></Type>
+          <Length>2</Length>
+          <Snippet>
+            <Line>
+              <Number>467</Number>
+              <Code>        public async Task&lt;IActionResult&gt; GetById(string id, string apiKey)</Code>
+            </Line>
+          </Snippet>
+        </PathNode>
+        <PathNode>
+          <FileName>code/src/MyApp.Api.Web/Controllers/Controller.cs</FileName>
+          <Line>474</Line>
+          <Column>82</Column>
+          <NodeId>2</NodeId>
+          <Name>id</Name>
+          <Type></Type>
+          <Length>2</Length>
+          <Snippet>
+            <Line>
+              <Number>474</Number>
+              <Code>                    var article = await repository.Get(id);</Code>
             </Line>
           </Snippet>
         </PathNode>
