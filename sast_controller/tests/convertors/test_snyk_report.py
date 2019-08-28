@@ -28,7 +28,6 @@ def get_bug_bar_mock(file_path=None, default=None):
 
 EXPECTED_REPORT = [{
     'Attachments': [],
-    'CVE': '',
     'CWE': 'CWE-400',
     'Description': '*Vulnerable Package:* brace-expansion\n'
                    '*Current Version:* 1.1.6\n'
@@ -52,9 +51,8 @@ EXPECTED_REPORT = [{
     'Issue Name': 'Regular Expression Denial of Service (ReDoS).@nyc.dotted',
     'Issue Priority': 'Major',
     'Issue Severity': 'Medium',
-    'Issue Tool': 'Snyk',
+    'Security Tool': 'Snyk',
     'Jira Name': 'Vulnerable Software',
-    'Overview': '',
     'Paths': 'MyAPP>@nyc.dotted@7.1.0>glob@7.0.5>minimatch@3.0.2>brace-expansion@1.1.6',
     'Recommendations': 'Upgrade `@nyc.dotted` to version 8.1.0 or higher',
     'References': '\n'

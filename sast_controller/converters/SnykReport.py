@@ -163,7 +163,7 @@ class SnykReport(BaseReport):
         vulnerable_path = '>'.join(vulnerability['from'])
         issue_base = deepcopy(self.canonical_issue_model)
         issue_base['Paths'] = set()
-        issue_base['Issue Tool'] = self.tool_name
+        issue_base['Security Tool'] = self.tool_name
         issue_base['Issue Priority'] = priority
         issue_base['Issue Severity'] = vulnerability['severity'].title()
 

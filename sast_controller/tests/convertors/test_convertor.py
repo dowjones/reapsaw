@@ -56,7 +56,7 @@ EXPECTED_INFO_MSG = (
 )
 
 TEST_ISSUE = {'Issue Name': 'Prototype Pollution.nyc',
-              'Issue Tool': 'Snyk',
+              'Security Tool': 'Snyk',
               'Steps To Reproduce': '',
               'Issue Priority': 'Major',
               'Issue Severity': 'Medium',

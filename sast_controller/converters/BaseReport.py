@@ -37,14 +37,12 @@ class BaseReport(object):
 
     canonical_issue_model = {
         "Issue Name": "",  # Name issue will have in RP and Jira
-        "Issue Tool": "",
+        "Security Tool": "",
         "Steps To Reproduce": "",
         "Issue Priority": "",  # Priority according to Bug Bar
         "Issue Severity": "",  # Risk Rating according to Bug Bar
         "Issue Confidence": "",
         "CWE": "",  # in case available
-        "CVE": "",  # in case available
-        "Overview": "",
         "Recommendations": "",
         "References": "",  # where you can read more about issue(s)
         "Paths": "",  # paths in code affected by issue
