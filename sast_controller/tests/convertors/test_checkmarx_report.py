@@ -31,7 +31,6 @@ BUG_BAR_SQLI = {
 
 EXPECTED_REPORT = [{
     'Attachments': [],
-    'CVE': '',
     'CWE': '[CWE-79|https://cwe.mitre.org/data/definitions/79]',
     'Description': ' Cross-site Scripting (XSS)\n'
                    '    GROUP: CSharp_High_Risk\n'
@@ -44,10 +43,9 @@ EXPECTED_REPORT = [{
     'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
     'Issue Priority': 'Major',
     'Issue Severity': 'High',
-    'Issue Tool': 'Checkmarx',
+    'Security Tool': 'Checkmarx',
     'Jira Name': 'Cross-site Scripting (XSS)',
     'Links': 'https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=11',
-    'Overview': '',
     'Paths': '',
     'RP Comment': '',
     'RP Defect Type': 'To Investigate',
@@ -67,7 +65,6 @@ EXPECTED_REPORT = [{
     'error_string': 'Cross-site Scripting (XSS) 79\n'
                     '/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}, {
     'Attachments': [],
-    'CVE': '',
     'CWE': '[CWE-79|https://cwe.mitre.org/data/definitions/79]',
     'Description': ' Cross-site Scripting (XSS)\n'
                    '    GROUP: CSharp_High_Risk\n'
@@ -81,10 +78,9 @@ EXPECTED_REPORT = [{
     'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
     'Issue Priority': 'Major',
     'Issue Severity': 'High',
-    'Issue Tool': 'Checkmarx',
+    'Security Tool': 'Checkmarx',
     'Jira Name': 'Cross-site Scripting (XSS)',
     'Links': 'https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=12',
-    'Overview': '',
     'Paths': '',
     'RP Comment': 'Oleksii C my_project, [Monday, July 29, 2019 10:36:13 AM]: '
                   'Changed status to Confirmed\r\n'

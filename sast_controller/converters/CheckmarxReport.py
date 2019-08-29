@@ -124,7 +124,7 @@ class CheckmarxReport(BaseReport):
                         continue
                     issue['Issue Name'] = f"{name}.{result_file}" if issue.get('Grouped', True) else name
                     issue['Jira Name'] = name
-                    issue['Issue Tool'] = self.tool_name
+                    issue['Security Tool'] = self.tool_name
                     issue["Issue Severity"] = severity
                     issue["Issue Priority"] = priority
                     issue['Issue Confidence'] = 'Certain'
