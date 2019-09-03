@@ -14,6 +14,13 @@ It can be easily integrated into already-established process and tools in an org
 
 Static application security testing (SAST) is a set of technologies designed to analyze application source code for coding and design conditions that are indicative of security vulnerabilities.
 
+### Technologies
+- Python 3.6
+- Snyk 1.110.2
+- Checkmarx v8.8.0
+- ReportPortal 4.3.0
+- Docker
+
 ### Documentation
 - [Wiki](https://github.com/dowjones/reapsaw/wiki)
 
