@@ -19,7 +19,7 @@ Static application security testing (SAST) is a set of technologies designed to 
 - Snyk 1.110.2
 - Checkmarx v8.8.0
 - ReportPortal 4.3.0
-- Docker
+- Docker 18.03.0-ce and later
 
 ### Documentation
 - [Wiki](https://github.com/dowjones/reapsaw/wiki)
