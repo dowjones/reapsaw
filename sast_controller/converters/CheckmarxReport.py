@@ -86,6 +86,7 @@ class CheckmarxReport(BaseReport):
         branch = os.environ.get('BRANCH', '')
         if not repo:
             self._get_repo(repo, cx_client)
+        existing_results = set()
         for query in self.report:
             group = query.attrib.get("group")
             query_id = query.attrib.get("id")
@@ -95,18 +96,12 @@ class CheckmarxReport(BaseReport):
             if category and category.rfind(";"):
                 category_place = category.rfind(";") + 1
                 category = category[category_place:]
-            existing_results = set()
             for result in query:
                 for path_ in result:
                     result_file = os.path.join('/', result.attrib["FileName"])
                     name = query.attrib.get("name")
                     language = query.attrib.get("Language")
                     line = result.attrib.get("Line")
-                    # do not append multiple results with the same file an line of code to report
-                    if result_file + line not in existing_results:
-                        existing_results.add(result_file + line)
-                    else:
-                        continue
                     result_state = result.attrib.get('state')
                     remark = result.attrib.get("Remark")
                     rp_defect_type = RP_DEFECT_TYPES[result_state]
@@ -155,9 +150,9 @@ class CheckmarxReport(BaseReport):
                     issue['References'] = place
 
                     if git_link:
-                        issue['Instances'] = f"File {git_link}"
+                        issue['Instances'] = f"File {git_link}\nCheckmarx project: {CX_PROJECT}"
                     else:
-                        issue['Instances'] = f"File {result_file}"
+                        issue['Instances'] = f"File {result_file}\nCheckmarx project: {CX_PROJECT}"
                     try:
                         # TODO: remove hardcoded values - use config instead
                         if name == 'Sensitive Information Disclosure':
@@ -181,6 +176,11 @@ class CheckmarxReport(BaseReport):
                     else:
                         issue["Description"] = self.info_message.format(desc, group, category,
                                                                         snippet[:100])
+                    # do not append multiple results with the same file and line of code to report
+                    if result_file + line + name not in existing_results:
+                        existing_results.add(result_file + line + name)
+                    else:
+                        continue
                     report.append(issue)
         print("Checkmarx report generation finished")
         self.new_items[self.tool_name] = bugbar_vulns.difference(existing_bb)
