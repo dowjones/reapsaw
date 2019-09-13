@@ -39,7 +39,8 @@ EXPECTED_REPORT = [{
                    '    *Code*:\n'
                    '    ``` public IActionResult PostTranslate(JsonApiResponse '
                    'article, IContentTranslation contentTranslation) ```',
-    'Instances': 'File code/src/MyApp.Api.Web/Controllers/Controller.cs',
+    'Instances': 'File code/src/MyApp.Api.Web/Controllers/Controller.cs\n'
+                 'Checkmarx project: myproj',
     'Issue Confidence': 'Certain',
     'Issue Name': 'Cross-site Scripting (XSS).code/src/MyApp.Api.Web/Controllers/Controller.cs',
     'Issue Priority': 'Major',
@@ -74,7 +75,8 @@ EXPECTED_REPORT = [{
                    '    *Code*:\n'
                    '    ``` public async Task<IActionResult> GetById(string id, '
                    'string apiKey) ```',
-    'Instances': 'File code/src/MyApp.Api.Web/Controllers/Controller.cs',
+    'Instances': 'File code/src/MyApp.Api.Web/Controllers/Controller.cs\n'
+                 'Checkmarx project: myproj',
     'Issue Confidence': 'Certain',
     'Issue Name': 'Cross-site Scripting (XSS).code/src/MyApp.Api.Web/Controllers/Controller.cs',
     'Issue Priority': 'Major',
@@ -106,6 +108,7 @@ EXPECTED_REPORT = [{
 ]
 
 
+@mock.patch.object(CheckmarxReport, 'CX_PROJECT', 'myproj')
 class TestCheckmarxReport(unittest.TestCase):
     def setUp(self):
         return_json_patcher = mock.patch('sast_controller.bug_bar.bug_bar.read_json')
@@ -152,7 +155,8 @@ class TestCheckmarxReport(unittest.TestCase):
         for _ in expected:
             _['Instances'] = \
                 'File ' \
-                'https://github.com/myrepo/blob/develop/code/src/MyApp.Api.Web/Controllers/Controller.cs'
+                'https://github.com/myrepo/blob/develop/code/src/MyApp.Api.Web/Controllers/Controller.cs\n' \
+                'Checkmarx project: myproj'
         self.assertEqual(expected, cx_report.report)
         self.assertEqual({'Checkmarx': set()}, cx_report.new_items)
 

@@ -150,9 +150,9 @@ class CheckmarxReport(BaseReport):
                     issue['References'] = place
 
                     if git_link:
-                        issue['Instances'] = f"File {git_link}"
+                        issue['Instances'] = f"File {git_link}\nCheckmarx project: {CX_PROJECT}"
                     else:
-                        issue['Instances'] = f"File {result_file}"
+                        issue['Instances'] = f"File {result_file}\nCheckmarx project: {CX_PROJECT}"
                     try:
                         # TODO: remove hardcoded values - use config instead
                         if name == 'Sensitive Information Disclosure':
