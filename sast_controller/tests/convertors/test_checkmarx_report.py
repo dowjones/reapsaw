@@ -36,11 +36,12 @@ EXPECTED_REPORT = [{
                    '    GROUP: CSharp_High_Risk\n'
                    '    CATEGORY: A7-Cross-Site Scripting (XSS)\n'
                    '    *Code*:\n'
-                   '    ``` public IActionResult PostTranslateDjml([FromBody] '
-                   'JsonApiResponse<ArticleData, MetaArticle> article, ```',
-    'Instances': 'File /code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
+                   '    ``` public IActionResult PostTranslate(JsonApiResponse '
+                   'article, IContentTranslation contentTranslation) ```',
+    'Instances': 'File /code/src/MyApp.Api.Web/Controllers/Controller.cs\n'
+                 'Checkmarx project: myproj',
     'Issue Confidence': 'Certain',
-    'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
+    'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/Controller.cs',
     'Issue Priority': 'Major',
     'Issue Severity': 'High',
     'Security Tool': 'Checkmarx',
@@ -49,33 +50,32 @@ EXPECTED_REPORT = [{
     'Paths': '',
     'RP Comment': '',
     'RP Defect Type': 'To Investigate',
-    'Recommendations': 'Please review and modify vulnerable code in line 553 of ArticlesController.cs',
+    'Recommendations': 'Please review and modify vulnerable code in line 553 of Controller.cs',
     'References': 'Line 553 in file '
-                  '[/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs|https://sast.mysite.com/CxWebClient/'
+                  '[/code/src/MyApp.Api.Web/Controllers/Controller.cs|https://sast.mysite.com/CxWebClient/'
                   'ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=11]',
     'Repo': 'https://github.com/myrepo',
-    'Snippet': 'public IActionResult PostTranslateDjml([FromBody] '
-               'JsonApiResponse<ArticleData, MetaArticle> article, '
-               '[FromServices] IContentTranslation contentTranslation)',
+    'Snippet': 'public IActionResult PostTranslate(JsonApiResponse article, '
+               'IContentTranslation contentTranslation)',
     'Steps To Reproduce': '',
     'Tags': [
         {'TestType': 'sast'},
         {'Provider': 'Reapsaw'},
         {'Tool': 'Checkmarx'}],
     'error_string': 'Cross-site Scripting (XSS) 79\n'
-                    '/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}, {
+                    '/code/src/MyApp.Api.Web/Controllers/Controller.cs'}, {
     'Attachments': [],
     'CWE': '[CWE-79|https://cwe.mitre.org/data/definitions/79]',
     'Description': ' Cross-site Scripting (XSS)\n'
                    '    GROUP: CSharp_High_Risk\n'
                    '    CATEGORY: A7-Cross-Site Scripting (XSS)\n'
                    '    *Code*:\n'
-                   '    ``` public async Task<IActionResult> '
-                   'GetDjmlByOriginId(string id, [FromHeader(Name= '
-                   '"x-api-key")] string ```',
-    'Instances': 'File /code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
+                   '    ``` public async Task<IActionResult> GetById(string id, '
+                   'string apiKey) ```',
+    'Instances': 'File /code/src/MyApp.Api.Web/Controllers/Controller.cs\n'
+                 'Checkmarx project: myproj',
     'Issue Confidence': 'Certain',
-    'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/ArticlesController.cs',
+    'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/Controller.cs',
     'Issue Priority': 'Major',
     'Issue Severity': 'High',
     'Security Tool': 'Checkmarx',
@@ -87,23 +87,24 @@ EXPECTED_REPORT = [{
                   'Oleksii C my_project, [Monday, July 29, 2019 10:35:47 AM]: '
                   'Changed status to Not Exploitable',
     'RP Defect Type': 'Product Bug',
-    'Recommendations': 'Please review and modify vulnerable code in line 553 of ArticlesController.cs',
+    'Recommendations': 'Please review and modify vulnerable code in line 553 of Controller.cs',
     'References': 'Line 467 in file '
-                  '[/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs|https://sast.mysite.com/CxWebClient/'
+                  '[/code/src/MyApp.Api.Web/Controllers/Controller.cs|https://sast.mysite.com/CxWebClient/'
                   'ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=12]',
     'Repo': 'https://github.com/myrepo',
-    'Snippet': 'public async Task<IActionResult> GetDjmlByOriginId(string '
-               'id, [FromHeader(Name= "x-api-key")] string apiKey)',
+    'Snippet': 'public async Task<IActionResult> GetById(string id, string '
+               'apiKey)',
     'Steps To Reproduce': '',
     'Tags': [
         {'TestType': 'sast'},
         {'Provider': 'Reapsaw'},
         {'Tool': 'Checkmarx'}],
     'error_string': 'Cross-site Scripting (XSS) 79\n'
-                    '/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'}
+                    '/code/src/MyApp.Api.Web/Controllers/Controller.cs'}
 ]
 
 
+@mock.patch.object(CheckmarxReport, 'CX_PROJECT', 'myproj')
 class TestCheckmarxReport(unittest.TestCase):
     def setUp(self):
         return_json_patcher = mock.patch('sast_controller.bug_bar.bug_bar.read_json')
@@ -150,7 +151,8 @@ class TestCheckmarxReport(unittest.TestCase):
         for _ in expected:
             _['Instances'] = \
                 'File ' \
-                'https://github.com/myrepo/blob/develop/code/src/MyApp.Api.Web/Controllers/ArticlesController.cs'
+                'https://github.com/myrepo/blob/develop/code/src/MyApp.Api.Web/Controllers/Controller.cs\n' \
+                'Checkmarx project: myproj'
         self.assertEqual(expected, cx_report.report)
         self.assertEqual({'Checkmarx': set()}, cx_report.new_items)
 
