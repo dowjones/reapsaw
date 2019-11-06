@@ -378,8 +378,11 @@ class ReportPortalService:
         return self.send_request("PUT", url, put_body)
 
     def enable_aa(self, project):
-        url = f'/api/v1/project/{project}'
-        body = '{"configuration":{"analyzerConfiguration":{"isAutoAnalyzerEnabled":true,' \
-               '"analyzer_mode":"LAUNCH_NAME","minDocFreq":"1","minShouldMatch":"95",' \
-               '"minTermFreq":"1","numberOfLogLines":"-1"}}}'
-        return self.send_request("PUT", url, body, status_codes=[200])
+        try:
+            url = f'/api/v1/project/{project}'
+            body = '{"configuration":{"analyzerConfiguration":{"isAutoAnalyzerEnabled":true,' \
+                   '"analyzer_mode":"LAUNCH_NAME","minDocFreq":"1","minShouldMatch":"95",' \
+                   '"minTermFreq":"1","numberOfLogLines":"-1"}}}'
+            return self.send_request("PUT", url, body, status_codes=[200])
+        except Exception as ex:
+            return str(ex)
