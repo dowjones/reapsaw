@@ -312,8 +312,9 @@ class ReportPortalService:
                 "entryType": "INTERNAL",
                 "projectName": project_name
             }
-            self.send_request("POST", url, json.dumps(post_body), status_codes=[201])
-            return self.enable_aa(project_name)
+            response = self.send_request("POST", url, json.dumps(post_body), status_codes=[201])
+            self.enable_aa(project_name)
+            return response
         return 'Project already exist'
 
     def update_ext_sys(self, prj, sys_id, params):
@@ -384,5 +385,5 @@ class ReportPortalService:
                    '"analyzer_mode":"LAUNCH_NAME","minDocFreq":"1","minShouldMatch":"95",' \
                    '"minTermFreq":"1","numberOfLogLines":"-1"}}}'
             return self.send_request("PUT", url, body, status_codes=[200])
-        except Exception as ex:
-            return str(ex)
+        except Exception:
+            pass
