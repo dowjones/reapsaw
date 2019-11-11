@@ -231,7 +231,8 @@ class Checkmarx(object):
         return self.client.service.GetAssociatedGroupsList(self.session)
 
     def get_projects_display_data(self):
-        return self.client.service.GetProjectsDisplayData(self.session).projectList.ProjectDisplayData
+        prj_list = self.client.service.GetProjectsDisplayData(self.session).projectList
+        return prj_list.ProjectDisplayData if prj_list else []
 
     def set_project_config(self, args, conf):
         """
