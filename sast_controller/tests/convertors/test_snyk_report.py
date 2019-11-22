@@ -88,6 +88,13 @@ class TestSnykReport(unittest.TestCase):
         snyk_report = SnykReport.SnykReport(os.path.dirname(os.path.abspath(__file__)) + '/snyk_report.json')
         self.assertEqual(EXPECTED_REPORT, snyk_report.report)
 
+    @mock.patch.dict(os.environ, {'BRANCH': 'develop'})
+    def test_report_with_git_branch(self):
+        snyk_report = SnykReport.SnykReport(os.path.dirname(os.path.abspath(__file__)) + '/snyk_report.json')
+        expected_report = copy.deepcopy(EXPECTED_REPORT)
+        expected_report[0]['Instances'] += '\nBranch: develop'
+        self.assertEqual(expected_report, snyk_report.report)
+
     @mock.patch('sast_controller.converters.SnykReport.SnykReport.__init__')
     def test_report_reinstall_recommendation(self, report_constructor):
         report_constructor.return_value = None
