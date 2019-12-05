@@ -31,7 +31,6 @@ BUG_BAR_SQLI = {
 
 EXPECTED_REPORT = [{
     'Attachments': [],
-    'CVE': '',
     'CWE': '[CWE-79|https://cwe.mitre.org/data/definitions/79]',
     'Description': ' Cross-site Scripting (XSS)\n'
                    '    GROUP: CSharp_High_Risk\n'
@@ -39,22 +38,21 @@ EXPECTED_REPORT = [{
                    '    *Code*:\n'
                    '    ``` public IActionResult PostTranslate(JsonApiResponse '
                    'article, IContentTranslation contentTranslation) ```',
-    'Instances': 'File code/src/MyApp.Api.Web/Controllers/Controller.cs\n'
+    'Instances': 'File /code/src/MyApp.Api.Web/Controllers/Controller.cs\n'
                  'Checkmarx project: myproj',
     'Issue Confidence': 'Certain',
-    'Issue Name': 'Cross-site Scripting (XSS).code/src/MyApp.Api.Web/Controllers/Controller.cs',
+    'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/Controller.cs',
     'Issue Priority': 'Major',
     'Issue Severity': 'High',
-    'Issue Tool': 'Checkmarx',
+    'Security Tool': 'Checkmarx',
     'Jira Name': 'Cross-site Scripting (XSS)',
     'Links': 'https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=11',
-    'Overview': '',
     'Paths': '',
     'RP Comment': '',
     'RP Defect Type': 'To Investigate',
     'Recommendations': 'Please review and modify vulnerable code in line 553 of Controller.cs',
     'References': 'Line 553 in file '
-                  '[code/src/MyApp.Api.Web/Controllers/Controller.cs|https://sast.mysite.com/CxWebClient/'
+                  '[/code/src/MyApp.Api.Web/Controllers/Controller.cs|https://sast.mysite.com/CxWebClient/'
                   'ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=11]',
     'Repo': 'https://github.com/myrepo',
     'Snippet': 'public IActionResult PostTranslate(JsonApiResponse article, '
@@ -65,9 +63,8 @@ EXPECTED_REPORT = [{
         {'Provider': 'Reapsaw'},
         {'Tool': 'Checkmarx'}],
     'error_string': 'Cross-site Scripting (XSS) 79\n'
-                    'code/src/MyApp.Api.Web/Controllers/Controller.cs'}, {
+                    '/code/src/MyApp.Api.Web/Controllers/Controller.cs'}, {
     'Attachments': [],
-    'CVE': '',
     'CWE': '[CWE-79|https://cwe.mitre.org/data/definitions/79]',
     'Description': ' Cross-site Scripting (XSS)\n'
                    '    GROUP: CSharp_High_Risk\n'
@@ -75,16 +72,15 @@ EXPECTED_REPORT = [{
                    '    *Code*:\n'
                    '    ``` public async Task<IActionResult> GetById(string id, '
                    'string apiKey) ```',
-    'Instances': 'File code/src/MyApp.Api.Web/Controllers/Controller.cs\n'
+    'Instances': 'File /code/src/MyApp.Api.Web/Controllers/Controller.cs\n'
                  'Checkmarx project: myproj',
     'Issue Confidence': 'Certain',
-    'Issue Name': 'Cross-site Scripting (XSS).code/src/MyApp.Api.Web/Controllers/Controller.cs',
+    'Issue Name': 'Cross-site Scripting (XSS)./code/src/MyApp.Api.Web/Controllers/Controller.cs',
     'Issue Priority': 'Major',
     'Issue Severity': 'High',
-    'Issue Tool': 'Checkmarx',
+    'Security Tool': 'Checkmarx',
     'Jira Name': 'Cross-site Scripting (XSS)',
     'Links': 'https://sast.mysite.com/CxWebClient/ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=12',
-    'Overview': '',
     'Paths': '',
     'RP Comment': 'Oleksii C my_project, [Monday, July 29, 2019 10:36:13 AM]: '
                   'Changed status to Confirmed\r\n'
@@ -93,7 +89,7 @@ EXPECTED_REPORT = [{
     'RP Defect Type': 'Product Bug',
     'Recommendations': 'Please review and modify vulnerable code in line 553 of Controller.cs',
     'References': 'Line 467 in file '
-                  '[code/src/MyApp.Api.Web/Controllers/Controller.cs|https://sast.mysite.com/CxWebClient/'
+                  '[/code/src/MyApp.Api.Web/Controllers/Controller.cs|https://sast.mysite.com/CxWebClient/'
                   'ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=12]',
     'Repo': 'https://github.com/myrepo',
     'Snippet': 'public async Task<IActionResult> GetById(string id, string '
@@ -104,7 +100,7 @@ EXPECTED_REPORT = [{
         {'Provider': 'Reapsaw'},
         {'Tool': 'Checkmarx'}],
     'error_string': 'Cross-site Scripting (XSS) 79\n'
-                    'code/src/MyApp.Api.Web/Controllers/Controller.cs'}
+                    '/code/src/MyApp.Api.Web/Controllers/Controller.cs'}
 ]
 
 

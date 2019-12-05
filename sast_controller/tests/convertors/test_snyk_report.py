@@ -28,7 +28,6 @@ def get_bug_bar_mock(file_path=None, default=None):
 
 EXPECTED_REPORT = [{
     'Attachments': [],
-    'CVE': '',
     'CWE': 'CWE-400',
     'Description': '*Vulnerable Package:* brace-expansion\n'
                    '*Current Version:* 1.1.6\n'
@@ -52,9 +51,8 @@ EXPECTED_REPORT = [{
     'Issue Name': 'Regular Expression Denial of Service (ReDoS).@nyc.dotted',
     'Issue Priority': 'Major',
     'Issue Severity': 'Medium',
-    'Issue Tool': 'Snyk',
+    'Security Tool': 'Snyk',
     'Jira Name': 'Vulnerable Software',
-    'Overview': '',
     'Paths': 'MyAPP>@nyc.dotted@7.1.0>glob@7.0.5>minimatch@3.0.2>brace-expansion@1.1.6',
     'Recommendations': 'Upgrade `@nyc.dotted` to version 8.1.0 or higher',
     'References': '\n'
@@ -89,6 +87,13 @@ class TestSnykReport(unittest.TestCase):
     def test_report_upgrade_recommendation(self):
         snyk_report = SnykReport.SnykReport(os.path.dirname(os.path.abspath(__file__)) + '/snyk_report.json')
         self.assertEqual(EXPECTED_REPORT, snyk_report.report)
+
+    @mock.patch.dict(os.environ, {'BRANCH': 'develop'})
+    def test_report_with_git_branch(self):
+        snyk_report = SnykReport.SnykReport(os.path.dirname(os.path.abspath(__file__)) + '/snyk_report.json')
+        expected_report = copy.deepcopy(EXPECTED_REPORT)
+        expected_report[0]['Instances'] += '\nBranch: develop'
+        self.assertEqual(expected_report, snyk_report.report)
 
     @mock.patch('sast_controller.converters.SnykReport.SnykReport.__init__')
     def test_report_reinstall_recommendation(self, report_constructor):

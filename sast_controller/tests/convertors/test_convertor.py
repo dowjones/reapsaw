@@ -56,7 +56,7 @@ EXPECTED_INFO_MSG = (
 )
 
 TEST_ISSUE = {'Issue Name': 'Prototype Pollution.nyc',
-              'Issue Tool': 'Snyk',
+              'Security Tool': 'Snyk',
               'Steps To Reproduce': '',
               'Issue Priority': 'Major',
               'Issue Severity': 'Medium',
@@ -117,6 +117,15 @@ class TestConverter(unittest.TestCase):
         self.assertEqual({'RP Defect Type': 'No Defect', 'RP Comment': ''}, items[0].defect_type_info)
         self.assertEqual(EXPECTED_ERR_MSG, items[0].msgs[0].message)
         self.assertEqual(EXPECTED_INFO_MSG, items[0].msgs[1].message)
+
+    @mock.patch.dict(os.environ, {'BRANCH': 'develop'})
+    def test_get_rp_items_snyk_instances_wit_branch(self):
+        self.mock_return_json.return_value = BUG_BAR
+        snyk_report_file = os.path.dirname(os.path.abspath(__file__)) + '/snyk_dotnet.json'
+        models = {snyk_report_file: SnykReport.SnykReport}
+        converter = Converter.Converter(models)
+        items = converter.get_rp_items()
+        self.assertIn('Branch: develop', items[0].msgs[1].message)
 
     def test_get_get_info_msg(self):
         self.assertEqual(EXPECTED_INFO_MESSAGE, Converter.Converter.get_info_msg(TEST_ISSUE, ''))

@@ -108,7 +108,7 @@ class Converter(object):
                         priority = PRIORITY_MAPPING[severity]
                 if issue['Jira Name']:
                     params = {"Name": issue['Jira Name']}
-                tools.add(issue['Issue Tool'])
+                tools.add(issue['Security Tool'])
                 error_msgs.add(issue['error_string'])
                 info_msgs.add(self.get_info_msg(issue, info_msgs))
 

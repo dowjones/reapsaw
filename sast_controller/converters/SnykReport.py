@@ -14,6 +14,7 @@
 
 from copy import deepcopy
 import json
+import os
 from re import sub
 
 import semver
@@ -163,7 +164,7 @@ class SnykReport(BaseReport):
         vulnerable_path = '>'.join(vulnerability['from'])
         issue_base = deepcopy(self.canonical_issue_model)
         issue_base['Paths'] = set()
-        issue_base['Issue Tool'] = self.tool_name
+        issue_base['Security Tool'] = self.tool_name
         issue_base['Issue Priority'] = priority
         issue_base['Issue Severity'] = vulnerability['severity'].title()
 
@@ -212,7 +213,11 @@ class SnykReport(BaseReport):
                                    {"Provider": self.provider},
                                    {"Tool": self.tool_name}])
         issue_base['Jira Name'] = 'Vulnerable Software'
-        issue_base['Instances'] = issue_base['top_level_module']
+        branch = os.environ.get('BRANCH', '')
+        instances = issue_base['top_level_module']
+        if branch:
+            instances += f'\nBranch: {branch}'
+        issue_base['Instances'] = instances
         issue_base['Issue Name'] = f"{vulnerability['title']}.{issue_base['top_level_module']}"
 
         return issue_base

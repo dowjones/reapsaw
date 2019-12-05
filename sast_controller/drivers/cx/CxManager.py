@@ -23,6 +23,7 @@ NO_SOURCES_ERROR = 'worker failed to retrieve scan'
 NO_SOURCES = "No supported files to scan in Checkmarx. \n Please find details by the link:\n " \
              "https://checkmarx.atlassian.net/wiki" \
              "/spaces/KC/pages/141328390/8.5.0+Supported+Code+Languages+and+Frameworks "
+SCAN_CANCELLED = 'Checkmarx scan was cancelled'
 
 
 class CxIncrementalScanException(Exception):
@@ -33,6 +34,13 @@ class CxIncrementalScanException(Exception):
 
 
 class CxNoSourceScanException(Exception):
+    """Use when no supported files in zip"""
+
+    def __init__(self, message):
+        self.message = message
+
+
+class CxScanCancelledException(Exception):
     """Use when no supported files in zip"""
 
     def __init__(self, message):
@@ -65,6 +73,7 @@ def scan_project(local_path=None, project=None, incremental_scan=False):
     if run_id:
         currently_running = None
         scan_id = None
+        total_progress = 0
         while currently_running != 'Finished':
             scan = cxClient.get_status_of_single_run(run_id)
             status = scan.CurrentStatus
@@ -76,6 +85,7 @@ def scan_project(local_path=None, project=None, incremental_scan=False):
                 except Exception:
                     cxClient.logger.critical(str(scan))
                     raise
+                break
             if currently_running == 'Failed':
                 cxClient.logger.critical("Scan Failed")
                 if scan.StageMessage.find(NO_SOURCES_ERROR) > -1:
@@ -85,6 +95,11 @@ def scan_project(local_path=None, project=None, incremental_scan=False):
                 if str(scan).find(INCREMENTAL_SCAN_ERROR) > -1:
                     raise CxIncrementalScanException(str(scan))
                 break
+            if currently_running == 'Canceled':
+                raise CxScanCancelledException(SCAN_CANCELLED)
+            if total_progress != scan.TotalPercent:
+                cxClient.logger.info(f'The scan is in progress, {total_progress} percent completed.')
+                total_progress = scan.TotalPercent
         if currently_running != "Failed":
             report_id = cxClient.create_scan_report(scan_id).ID
             while not cxClient.get_scan_report_status(report_id).IsReady:

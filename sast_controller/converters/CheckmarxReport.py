@@ -98,7 +98,7 @@ class CheckmarxReport(BaseReport):
                 category = category[category_place:]
             for result in query:
                 for path_ in result:
-                    result_file = result.attrib["FileName"]
+                    result_file = os.path.join('/', result.attrib["FileName"])
                     name = query.attrib.get("name")
                     language = query.attrib.get("Language")
                     line = result.attrib.get("Line")
@@ -119,7 +119,7 @@ class CheckmarxReport(BaseReport):
                         continue
                     issue['Issue Name'] = f"{name}.{result_file}" if issue.get('Grouped', True) else name
                     issue['Jira Name'] = name
-                    issue['Issue Tool'] = self.tool_name
+                    issue['Security Tool'] = self.tool_name
                     issue["Issue Severity"] = severity
                     issue["Issue Priority"] = priority
                     issue['Issue Confidence'] = 'Certain'
