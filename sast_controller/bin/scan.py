@@ -214,7 +214,7 @@ def f(cmd):
 def main():
     """Entrypoint for execution script"""
     p = Pool(5)
-    tasks = environ.get("TASKS", "cx,snyk").split(",")
+    tasks = environ.get("TASKS", "cx,snyk").replace(' ', '').split(",")
     logging.info(f'Your tasks: {tasks}')
     r = p.map_async(f, tasks)
     r.wait()
