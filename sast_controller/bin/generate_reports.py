@@ -11,6 +11,8 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+
+from collections import defaultdict
 import json
 import os
 import logging.config
@@ -19,6 +21,7 @@ import re
 import requests
 
 from junit_xml import TestSuite
+from texttable import Texttable
 from requests.exceptions import ConnectionError
 from argparse import ArgumentParser, ArgumentTypeError
 
@@ -155,6 +158,21 @@ def get_models(args):
     return models
 
 
+def print_findings_summary(test_items):
+    counts = defaultdict(int)
+    severities = dict()
+    for item in test_items:
+        if not item.defect_type_info or item.defect_type_info['RP Defect Type'] != 'No Defect':
+            issue_type = item.issue.split('.')[0]
+            counts[issue_type] += 1
+            severities[issue_type] = item.severity
+    to_print = [[k, v, severities[k]] for k, v in counts.items()]
+    t = Texttable()
+    to_print.insert(0, ['Vulnerability', 'Count', 'Risk Rating'])
+    t.add_rows(to_print)
+    print(t.draw())
+
+
 def generate_reports(args, models):
     """
     Generate Report Portal, JUnit, JSON reports
@@ -168,6 +186,8 @@ def generate_reports(args, models):
         repo = repo[:-len('.git')]
     canonical = Converter(models, repo, branch)
     ti = canonical.get_rp_items()
+
+    print_findings_summary(ti)
 
     if ti:
         if args.reportportal:
