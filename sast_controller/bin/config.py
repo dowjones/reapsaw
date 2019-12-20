@@ -15,6 +15,12 @@
 import os
 
 
+def str_to_bool(string):
+    if string == 'true':
+        return True
+    return False
+
+
 class Config(object):
     """Class with default configuration parameters"""
     EXCLUDED_TYPES = ["png", "zip", "css", "txt", "svg", "mp3", "wav", "less", "gif"]
@@ -26,6 +32,8 @@ class Config(object):
     CX_INCREMENTAL = os.environ.get('cx_incremental', 'true')
     CX_FILES = os.environ.get('cx_files', None)
     CX_PATH = os.environ.get("cx_path", None)
+
+    ENABLE_SNYK_MONITOR = str_to_bool(os.environ.get('ENABLE_SNYK_MONITOR', 'false'))
 
     TMP_FOLDER = '/tmp'
     ZIP_NAME = 'cx.zip'
