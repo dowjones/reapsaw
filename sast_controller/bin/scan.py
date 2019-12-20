@@ -91,10 +91,20 @@ def cx_connectivity():
     return False
 
 
+def snyk_monitor(file_path=None):
+    if file_path:
+        cmd = f'snyk monitor --file={file_path}'
+    else:
+        cmd = 'snyk monitor'
+    subprocess.Popen(cmd.split(' '), encoding='utf-8', stdout=subprocess.PIPE).stdout.read()
+
+
 def snyk_scan_dotnet():
     sln_file = environ.get('sln_file', '')
     if sln_file:
         cmd = f'snyk test --file={sln_file} --json'.split(" ")
+        if Config.ENABLE_SNYK_MONITOR:
+            snyk_monitor(sln_file)
         raw_result = subprocess.Popen(cmd, encoding='utf-8', stdout=subprocess.PIPE).stdout.read()
         return raw_result
 
@@ -104,6 +114,8 @@ def snyk_scan_dotnet():
             if fnmatch.fnmatch(file_name, '*.sln'):
                 file_path = path.join(root, file_name)
                 cmd = f'snyk test --file={file_path} --json'.split(' ')
+                if Config.ENABLE_SNYK_MONITOR:
+                    snyk_monitor(file_path)
                 raw_result = subprocess.Popen(cmd, encoding='utf-8', stdout=subprocess.PIPE).stdout.read()
                 try:
                     json_result = json.loads(raw_result)
@@ -135,6 +147,8 @@ def snyk_scan():
                          stdout=subprocess.PIPE).communicate()
         return
     else:
+        if Config.ENABLE_SNYK_MONITOR:
+            snyk_monitor()
         cmd = 'snyk test --json'.split(" ")
         test = subprocess.Popen(cmd, encoding="utf-8", stdout=subprocess.PIPE)
         output = test.stdout.read()
