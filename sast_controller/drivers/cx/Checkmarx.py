@@ -16,7 +16,6 @@ import logging
 import string
 import random
 import os
-from time import sleep
 
 from sast_controller.drivers.cx.CheckmarxConnection import CheckmarxConnection
 from sast_controller.drivers.cx.utils import extract_zip, configure_logging
@@ -183,7 +182,6 @@ class Checkmarx(object):
         :param request_id:
         :return:
         """
-        sleep(5)
         return self.client.service.GetScanReportStatus(self.session, request_id)
 
     def get_status_of_single_run(self, run_id):
