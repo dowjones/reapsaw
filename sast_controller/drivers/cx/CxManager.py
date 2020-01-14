@@ -13,6 +13,7 @@
 #  limitations under the License.
 
 import os
+from time import sleep
 
 from sast_controller.drivers.cx.Checkmarx import Checkmarx
 
@@ -101,8 +102,10 @@ def scan_project(local_path=None, project=None, incremental_scan=False):
                 cxClient.logger.info(f'The scan is in progress, {total_progress} percent completed.')
                 total_progress = scan.TotalPercent
         if currently_running != "Failed":
+            sleep(5)
             report_id = cxClient.create_scan_report(scan_id).ID
             while not cxClient.get_scan_report_status(report_id).IsReady:
+                sleep(5)
                 cxClient.logger.info("Report generation in progress")
             report = cxClient.get_scan_report(report_id)
     return report
