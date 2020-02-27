@@ -1,6 +1,6 @@
 bandit==1.5.1
 junit-xml==1.8
-requests==2.21.0
+requests==2.23.0
 zeep==2.5.0
 PyYAML==3.12
 bs4==0.0.1
