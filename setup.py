@@ -21,7 +21,7 @@ setup(
     long_description='',
     license='Apache License 2.0',
     packages=find_packages(),
-    install_requires=['bandit==1.5.1', 'junit-xml==1.8', 'requests==2.21.0', 'zeep==2.5.0', 'PyYAML==3.12',
+    install_requires=['bandit==1.5.1', 'junit-xml==1.8', 'requests==2.23.0', 'zeep==2.5.0', 'PyYAML==3.12',
                       'bs4==0.0.1', 'slackclient==1.2.1', 'jira==1.0.15',
                       'configparser==3.5.0', 'PyJWT==1.6.4', 'cryptography==2.2.2',
                       'xmltodict==0.11.0', 'junit2html==21', 'node-semver==0.6.1', 'texttable==1.6.2'],
