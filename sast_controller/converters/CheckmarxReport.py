@@ -132,8 +132,8 @@ class CheckmarxReport(BaseReport):
                         issue['RP Comment'] = remark
                     if not rec:
                         try:
-                            if query_id not in jira_recommendations:
-                                jira_recommendations[query_id] = utils.get_jira_recommendations(cx_client, query_id)
+                            #if query_id not in jira_recommendations:
+                               # jira_recommendations[query_id] = utils.get_jira_recommendations(cx_client, query_id)
 
                             issue['Recommendations'] = jira_recommendations[query_id]
                         except Exception:
@@ -165,8 +165,8 @@ class CheckmarxReport(BaseReport):
                     if not desc:
                         issue["Description"] = self.info_message.format(name, group, category, snippet[:100])
                         try:
-                            if cwe not in jira_desc:
-                                jira_desc[cwe] = utils.get_jira_overview(cx_client, cwe)
+                            #if cwe not in jira_desc:
+                                #jira_desc[cwe] = utils.get_jira_overview(cx_client, cwe)
                             issue["Description"] = self.info_message.format(jira_desc[cwe], group, category,
                                                                             snippet[:100])
                         except Exception:
