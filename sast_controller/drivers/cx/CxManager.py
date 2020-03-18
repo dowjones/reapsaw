@@ -1,17 +1,10 @@
 import os
-
 from sast_controller.drivers.cx.Checkmarx import Checkmarx
-
 import os
 import re
 import time
 import json
-
-import requests
-from requests import Request, Session
-from requests_toolbelt import MultipartEncoder
-
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+from sast_controller.bin.config import Config
 
 
 class CxIncrementalScanException(Exception):
@@ -20,13 +13,11 @@ class CxIncrementalScanException(Exception):
     def __init__(self, message):
         self.message = message
 
-
 class CxNoSourceScanException(Exception):
     """Use when no supported files in zip"""
 
     def __init__(self, message):
         self.message = message
-
 
 def scan_project(local_path=None, project=None, incremental_scan=False):
     cxClient = Checkmarx(project)
@@ -34,13 +25,19 @@ def scan_project(local_path=None, project=None, incremental_scan=False):
     preset_id = 1
     engine_configuration_id = 5
 
-    check_prj_exists = cxClient.check_project_by_name(project)
+    check_prj_exists = cxClient.get_project_id_by_name(project)
+
+    try:
+        team_name =  cxClient.get_team_id_by_name(Config.TEAM_NAME)
+    except Exception:
+        cxClient.logger.critical("Team not found")
+
     if check_prj_exists:
-        project_id = cxClient.get_project_id_by_name(project)
+         project_id = cxClient.get_project_id_by_name(project)
     else:
         project = cxClient.create_project_with_default_configuration(
-            name=project,
-            owning_team='d728ada5-5a56-442e-9562-0f506be3ecae',
+            name = project,
+            owning_team =team_name,
             is_public=True)
         project_id = project.json().get("id")
 
