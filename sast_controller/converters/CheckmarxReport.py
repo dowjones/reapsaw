@@ -80,16 +80,12 @@ class CheckmarxReport(BaseReport):
         report = []
         bugbar_vulns = set()
         existing_bb = set()
-        jira_recommendations = {}
-        jira_desc = {}
         repo = os.environ.get('REPO', '')
         branch = os.environ.get('BRANCH', '')
         if not repo:
             self._get_repo(repo, cx_client)
         existing_results = set()
         for query in self.report:
-            group = query.attrib.get("group")
-            query_id = query.attrib.get("id")
             cwe = query.attrib.get("cweId")
             category = query.attrib.get("categories")
             bugbar_vulns.add(query.attrib.get("name"))
@@ -110,7 +106,6 @@ class CheckmarxReport(BaseReport):
                     deep_link = result.attrib.get("DeepLink")
                     git_link = self.get_git_path(repo, branch, result.attrib["FileName"])
                     file_index = str(result_file).rfind("/")
-                    test_name = str(result_file)[file_index + 1:]
                     issue = deepcopy(self.canonical_issue_model)
                     name, priority, severity, desc, rec = self.__get_from_bugbar(existing_bb, issue, name, priority,
                                                                                  severity, language)
@@ -130,19 +125,7 @@ class CheckmarxReport(BaseReport):
                     if rp_defect_type:
                         issue['RP Defect Type'] = rp_defect_type
                         issue['RP Comment'] = remark
-                    if not rec:
-                        try:
-                            # if query_id not in jira_recommendations:
-                            #    jira_recommendations[query_id] = utils.get_jira_recommendations(cx_client, query_id)
 
-                            issue['Recommendations'] = jira_recommendations[query_id]
-                        except Exception:
-                            LOG.info(f'Could not parse issue recommendation for this query id {query_id}')
-                            # use hardcoded recommendations in case of any issues with parsing html returned by Cx
-                            issue['Recommendations'] = self.recommendation.format(line, test_name)
-                            jira_recommendations[query_id] = self.recommendation.format(line, test_name)
-                    else:
-                        issue['Recommendations'] = rec
                     issue["Tags"].extend([{"TestType": self.test_type},
                                           {"Provider": self.provider},
                                           {"Tool": self.tool_name}])
@@ -162,20 +145,6 @@ class CheckmarxReport(BaseReport):
                     except AttributeError:
                         snippet = path_[0].find("Name").text.strip()
                     issue['Snippet'] = snippet
-                    if not desc:
-                        issue["Description"] = self.info_message.format(name, group, category, snippet[:100])
-                        try:
-                            # if cwe not in jira_desc:
-                            #     jira_desc[cwe] = utils.get_jira_overview(cx_client, cwe)
-                            issue["Description"] = self.info_message.format(jira_desc[cwe], group, category,
-                                                                            snippet[:100])
-                        except Exception:
-                            LOG.info(f'Could not parse issue overview for this cwe id {cwe}')
-                            issue["Description"] = self.info_message.format(name, group, category, snippet[:100])
-                            jira_desc[cwe] = name
-                    else:
-                        issue["Description"] = self.info_message.format(desc, group, category,
-                                                                        snippet[:100])
                     # do not append multiple results with the same file and line of code to report
                     if result_file + line + name not in existing_results:
                         existing_results.add(result_file + line + name)
