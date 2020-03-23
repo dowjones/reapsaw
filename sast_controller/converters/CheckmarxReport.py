@@ -86,6 +86,7 @@ class CheckmarxReport(BaseReport):
             self._get_repo(repo, cx_client)
         existing_results = set()
         for query in self.report:
+            group = query.attrib.get("group")
             cwe = query.attrib.get("cweId")
             category = query.attrib.get("categories")
             bugbar_vulns.add(query.attrib.get("name"))
@@ -106,6 +107,7 @@ class CheckmarxReport(BaseReport):
                     deep_link = result.attrib.get("DeepLink")
                     git_link = self.get_git_path(repo, branch, result.attrib["FileName"])
                     file_index = str(result_file).rfind("/")
+                    test_name = str(result_file)[file_index + 1:]
                     issue = deepcopy(self.canonical_issue_model)
                     name, priority, severity, desc, rec = self.__get_from_bugbar(existing_bb, issue, name, priority,
                                                                                  severity, language)
@@ -126,6 +128,10 @@ class CheckmarxReport(BaseReport):
                         issue['RP Defect Type'] = rp_defect_type
                         issue['RP Comment'] = remark
 
+                    if not rec:
+                        issue['Recommendations'] = self.recommendation.format(line, test_name)
+
+
                     issue["Tags"].extend([{"TestType": self.test_type},
                                           {"Provider": self.provider},
                                           {"Tool": self.tool_name}])
@@ -145,6 +151,11 @@ class CheckmarxReport(BaseReport):
                     except AttributeError:
                         snippet = path_[0].find("Name").text.strip()
                     issue['Snippet'] = snippet
+                    if not desc:
+                        issue["Description"] = self.info_message.format(name,
+                                                                        group,
+                                                                        category,
+                                                                        snippet[:100])
                     # do not append multiple results with the same file and line of code to report
                     if result_file + line + name not in existing_results:
                         existing_results.add(result_file + line + name)

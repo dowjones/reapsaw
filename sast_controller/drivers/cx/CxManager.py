@@ -55,7 +55,7 @@ def scan_project(local_path=None, project=None, incremental_scan=False):
             id=scan_id).json().get('status').get('name')
         if scan_status == 'Failed':
             cxClient.logger.critical("Scan Failed")
-            break
+            return
         if scan_status == 'Finished':
             cxClient.logger.info("Scan Finished")
         time.sleep(10)
@@ -70,9 +70,8 @@ def scan_project(local_path=None, project=None, incremental_scan=False):
             report_id=report_id).json().get("status").get("value")
         if report_status == 'Failed':
             cxClient.logger.critical("Report Failed")
-            break
+            return
         time.sleep(5)
     report_outfile = cxClient.get_reports_by_id(report_id=report_id,
                                                 report_type=report_type).content
-
     return report_outfile

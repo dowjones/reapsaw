@@ -33,29 +33,27 @@ class Checkmarx(object):
                       files=None):
         if url_sub is None:
             url_sub = dict(pattern="", value="")
-        try:
-            if not keyword:
-                raise Exception("Keyword not exists")
-            url = self.server + re.sub(url_sub.get("pattern"),
-                                       url_sub.get("value"),
-                                       keyword.get("url_suffix"))
-            s = requests.Session()
-            headers = headers or self.headers
-            req = requests.Request(method=keyword.get("http_method"),
-                                   headers=headers, url=url, data=data,
-                                   files=files)
-            prepped = req.prepare()
-            resp = s.send(prepped, verify=False)
-            if resp.status_code in [200, 201, 202, 204]:
-                return resp
-            elif resp.status_code == 400:
-                raise Exception(" 400 Bad Request: {}.".format(resp.text))
-            elif resp.status_code == 404:
-                raise Exception(" 404 Not found {}.".format(resp.text))
-            else:
-                raise Exception(" Failed: {}.".format(resp.text))
-        except Exception as e:
-            raise Exception("{}".format(e))
+
+        if not keyword:
+            raise Exception("Keyword does not exist")
+        url = self.server + re.sub(url_sub.get("pattern"),
+                                   url_sub.get("value"),
+                                   keyword.get("url_suffix"))
+        s = requests.Session()
+        headers = headers or self.headers
+        req = requests.Request(method=keyword.get("http_method"),
+                               headers=headers, url=url, data=data,
+                               files=files)
+        prepped = req.prepare()
+        resp = s.send(prepped, verify=False)
+        if resp.status_code in [200, 201, 202, 204]:
+            return resp
+        elif resp.status_code == 400:
+            raise Exception(" 400 Bad Request: {}.".format(resp.text))
+        elif resp.status_code == 404:
+            raise Exception(" 404 Not found {}.".format(resp.text))
+        else:
+            raise Exception(" Failed: {}.".format(resp.text))
 
     def get_token(self):
         data = {"username": self.username,
@@ -278,7 +276,7 @@ class Checkmarx(object):
             if name == project.lower():
                 project_id = prj.get('id')
                 return project_id
-        return False
+        return None
 
     def get_team_id_by_name(self, team_name):
         """
@@ -291,7 +289,7 @@ class Checkmarx(object):
             if name.lower() == team_name.lower():
                 team_id = names.get('id')
                 return team_id
-        return False
+        return None
 
     def get_team_default_name(self):
         """
