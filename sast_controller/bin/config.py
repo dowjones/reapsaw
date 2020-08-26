@@ -26,6 +26,7 @@ class Config(object):
     EXCLUDED_TYPES = ["png", "zip", "css", "txt", "svg", "mp3", "wav", "less", "gif"]
     EXCLUDED_PATH = ["node_modules", "config", "coverage", "dist_", "test", "report", "i18n"]
     CODE_PATH = os.environ.get('CODE_PATH') or '/code'
+    TEAM_NAME = os.environ.get('TEAM_NAME', None)
 
     CX_PROJECT_NAME = os.environ.get('CX_PROJECT', os.environ.get('PROJECT', None))
 

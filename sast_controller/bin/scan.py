@@ -39,8 +39,8 @@ def cx_scan(local_, prj_, inc_, f_path):
     except Exception as e:
         logging.error(str(e))
         return
-    if report and report.ScanResults:
-        data = str(report.ScanResults).replace("b'\\xef\\xbb\\xbf", "", 1)
+    if report:
+        data = str(report).replace("b'\\xef\\xbb\\xbf", "", 1)
         data = data.replace("\\r\\n", "\n")
         data = data.replace(">'", ">")
         write_file(f_path, data)

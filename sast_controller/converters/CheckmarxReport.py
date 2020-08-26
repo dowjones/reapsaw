@@ -80,8 +80,6 @@ class CheckmarxReport(BaseReport):
         report = []
         bugbar_vulns = set()
         existing_bb = set()
-        jira_recommendations = {}
-        jira_desc = {}
         repo = os.environ.get('REPO', '')
         branch = os.environ.get('BRANCH', '')
         if not repo:
@@ -89,7 +87,6 @@ class CheckmarxReport(BaseReport):
         existing_results = set()
         for query in self.report:
             group = query.attrib.get("group")
-            query_id = query.attrib.get("id")
             cwe = query.attrib.get("cweId")
             category = query.attrib.get("categories")
             bugbar_vulns.add(query.attrib.get("name"))
@@ -130,19 +127,11 @@ class CheckmarxReport(BaseReport):
                     if rp_defect_type:
                         issue['RP Defect Type'] = rp_defect_type
                         issue['RP Comment'] = remark
-                    if not rec:
-                        try:
-                            if query_id not in jira_recommendations:
-                                jira_recommendations[query_id] = utils.get_jira_recommendations(cx_client, query_id)
 
-                            issue['Recommendations'] = jira_recommendations[query_id]
-                        except Exception:
-                            LOG.info(f'Could not parse issue recommendation for this query id {query_id}')
-                            # use hardcoded recommendations in case of any issues with parsing html returned by Cx
-                            issue['Recommendations'] = self.recommendation.format(line, test_name)
-                            jira_recommendations[query_id] = self.recommendation.format(line, test_name)
-                    else:
-                        issue['Recommendations'] = rec
+                    if not rec:
+                        issue['Recommendations'] = self.recommendation.format(line, test_name)
+
+
                     issue["Tags"].extend([{"TestType": self.test_type},
                                           {"Provider": self.provider},
                                           {"Tool": self.tool_name}])
@@ -163,18 +152,9 @@ class CheckmarxReport(BaseReport):
                         snippet = path_[0].find("Name").text.strip()
                     issue['Snippet'] = snippet
                     if not desc:
-                        issue["Description"] = self.info_message.format(name, group, category, snippet[:100])
-                        try:
-                            if cwe not in jira_desc:
-                                jira_desc[cwe] = utils.get_jira_overview(cx_client, cwe)
-                            issue["Description"] = self.info_message.format(jira_desc[cwe], group, category,
-                                                                            snippet[:100])
-                        except Exception:
-                            LOG.info(f'Could not parse issue overview for this cwe id {cwe}')
-                            issue["Description"] = self.info_message.format(name, group, category, snippet[:100])
-                            jira_desc[cwe] = name
-                    else:
-                        issue["Description"] = self.info_message.format(desc, group, category,
+                        issue["Description"] = self.info_message.format(name,
+                                                                        group,
+                                                                        category,
                                                                         snippet[:100])
                     # do not append multiple results with the same file and line of code to report
                     if result_file + line + name not in existing_results:
