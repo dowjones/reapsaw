@@ -131,7 +131,6 @@ class CheckmarxReport(BaseReport):
                     if not rec:
                         issue['Recommendations'] = self.recommendation.format(line, test_name)
 
-
                     issue["Tags"].extend([{"TestType": self.test_type},
                                           {"Provider": self.provider},
                                           {"Tool": self.tool_name}])
