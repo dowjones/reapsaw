@@ -81,7 +81,7 @@ def cx_connectivity():
     if not (environ.get('OWNER') or environ.get('CX_USER')) or not (
             environ.get('PASSWORD') or environ.get('CX_PASSWORD')) or not environ.get('CX_URL'):
         logging.critical(
-            f'Please specify Checkmarx data: CX_USER, CX_PASSWORD and CX_URL environment variables.')
+            'Please specify Checkmarx data: CX_USER, CX_PASSWORD and CX_URL environment variables.')
     else:
         try:
             check_connectivity(environ['CX_URL'], 'Unable to connect to Checkmarx')
@@ -138,7 +138,7 @@ def snyk_scan():
     lang_ = environ.get("lang", "")
 
     if not environ.get('SNYK_TOKEN'):
-        logging.error(f'Please specify SNYK_TOKEN environment variable.')
+        logging.error('Please specify SNYK_TOKEN environment variable.')
         return
     if lang_ == 'dotnet':
         output = snyk_scan_dotnet()
@@ -155,7 +155,7 @@ def snyk_scan():
     json_output = json.loads(output)
     if "error" in json_output:
         if 'Invalid auth token provided' in output:
-            logging.error(f"Invalid auth token provided. Please double check SNYK_TOKEN")
+            logging.error("Invalid auth token provided. Please double check SNYK_TOKEN")
             raise AssertionError('Invalid Snyk auth token provided')
         logging.error(f"{output}")
         if path.isfile('package-lock.json'):
@@ -166,7 +166,7 @@ def snyk_scan():
             test = subprocess.Popen(cmd, encoding="utf-8", stdout=subprocess.PIPE)
             output = test.stdout.read()
         else:
-            logging.error(f'Unable to run Snyk')
+            logging.error('Unable to run Snyk')
             return
 
     write_file(Config.SNYK_OUTPUT_PATH, output)

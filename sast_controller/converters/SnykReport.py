@@ -120,9 +120,9 @@ class SnykReport(BaseReport):
                 vuln['Recommendations'] = (f'Upgrade `{vuln["top_level_module"]}` '
                                            f'to version {recommendations[vuln["from"][1]].split("@")[-1]} or higher')
             else:
-                vuln['Recommendations'] = (f'Your dependencies are out of date. Please remove your `node_modules` '
-                                           f'directory and lock file, run `npm install` and commit new lock file to '
-                                           f'your repo. Note, this will likely make a lot of changes to lock file.')
+                vuln['Recommendations'] = ('Your dependencies are out of date. Please remove your `node_modules` '
+                                           'directory and lock file, run `npm install` and commit new lock file to '
+                                           'your repo. Note, this will likely make a lot of changes to lock file.')
 
     def _canonify(self):
         if isinstance(self.report, list):
