@@ -130,6 +130,8 @@ class CheckmarxReport(BaseReport):
 
                     if not rec:
                         issue['Recommendations'] = self.recommendation.format(line, test_name)
+                    else:
+                        issue['Recommendations'] = rec
 
                     issue["Tags"].extend([{"TestType": self.test_type},
                                           {"Provider": self.provider},
@@ -155,6 +157,8 @@ class CheckmarxReport(BaseReport):
                                                                         group,
                                                                         category,
                                                                         snippet[:100])
+                    else:
+                        issue["Description"] = desc
                     # do not append multiple results with the same file and line of code to report
                     if result_file + line + name not in existing_results:
                         existing_results.add(result_file + line + name)
