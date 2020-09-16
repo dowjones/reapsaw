@@ -25,7 +25,6 @@ class Checkmarx(object):
         self.headers = {
             'Authorization': f'Bearer {self.token}',
             "Accept": "application/json;v=1.0"}
-        pass
 
     ReportFormat = 'XML'
 

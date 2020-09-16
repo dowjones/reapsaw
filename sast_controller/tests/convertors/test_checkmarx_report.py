@@ -87,7 +87,7 @@ EXPECTED_REPORT = [{
                   'Oleksii C my_project, [Monday, July 29, 2019 10:35:47 AM]: '
                   'Changed status to Not Exploitable',
     'RP Defect Type': 'Product Bug',
-    'Recommendations': 'Please review and modify vulnerable code in line 553 of Controller.cs',
+    'Recommendations': 'Please review and modify vulnerable code in line 467 of Controller.cs',
     'References': 'Line 467 in file '
                   '[/code/src/MyApp.Api.Web/Controllers/Controller.cs|https://sast.mysite.com/CxWebClient/'
                   'ViewerMain.aspx?scanid=1027717&projectid=3076&pathid=12]',
