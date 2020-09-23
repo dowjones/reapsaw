@@ -272,7 +272,7 @@ class Checkmarx(object):
 
         for prj in projects_lists:
             name = prj.get('name')
-            if name == project.lower():
+            if name.lower() == project.lower():
                 project_id = prj.get('id')
                 return project_id
         return None
